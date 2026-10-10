@@ -1,5 +1,5 @@
 #include "book.h"
-
+#include <sstream>
 using namespace std;
 
 Book::Book()
@@ -79,4 +79,21 @@ string Book::toString() const {
     }
 
     return result;
+}
+
+string Book::toFileFormat() const{
+    return title + "|" + author + "|" + isbn + "|" + (isAvailable ? "1" : "0") + "|" + borrowerId;
+}
+
+void Book::fromFileFormat(const string& line){
+    stringstream book(line);
+    string disponible;
+
+    getline(book, title, '|');
+    getline(book, author, '|');
+    getline(book, isbn, '|');
+    getline(book, disponible, '|');
+    getline(book, borrowerId, '|');
+
+    isAvailable = (disponible == "1");
 }
