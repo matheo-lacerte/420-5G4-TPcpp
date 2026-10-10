@@ -56,3 +56,14 @@ void Book::setAvailability(bool available) {
 void Book::setBorrowerId(const string& id) {
     borrowerId = id;
 }
+
+
+void Book::checkOut(const string& borrowerId) {
+    setAvailability(false);
+    setBorrowerId(borrowerId);
+}
+
+void Book::returnBook() {
+    setAvailability(true);
+    setBorrowerId("");
+}
