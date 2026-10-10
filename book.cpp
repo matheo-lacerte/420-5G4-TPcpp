@@ -67,3 +67,16 @@ void Book::returnBook() {
     setAvailability(true);
     setBorrowerId("");
 }
+
+string Book::toString() const {
+    string result = "Titre: " + title +
+                    "\nAuteur: " + author +
+                    "\nISBN: " + isbn +
+                    "\nDisponible: " + (isAvailable ? "Oui" : "Non");
+
+    if (!isAvailable && !borrowerId.empty()) {
+        result += "\nEmprunté par: " + borrowerId;
+    }
+
+    return result;
+}
