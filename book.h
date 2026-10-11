@@ -2,7 +2,7 @@
 #define BOOK_H
 
 #include <string>
-
+#include "logger.h"
 using namespace std;
 class Library;
 class Book {

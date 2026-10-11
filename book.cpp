@@ -1,6 +1,8 @@
 #include "book.h"
 #include "library.h"
 #include <sstream>
+#include <fstream>
+
 using namespace std;
 
 Book::Book()
@@ -62,6 +64,7 @@ void Book::setBorrowerId(const string& id) {
 void Book::checkOut(const string& borrowerId) {
     setAvailability(false);
     setBorrowerId(borrowerId);
+
 }
 
 void Book::returnBook() {

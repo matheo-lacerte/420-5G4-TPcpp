@@ -69,7 +69,7 @@ bool FileManager::loadBooksFromFile(Library& library) {
         if (!line.empty()) {
             Book book;
             book.fromFileFormat(line);
-            library.addBook(book);
+            library.addBook(book, false);
             count++;
         }
     }
