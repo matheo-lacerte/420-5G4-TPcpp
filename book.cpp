@@ -1,4 +1,5 @@
 #include "book.h"
+#include "library.h"
 #include <sstream>
 using namespace std;
 
@@ -68,14 +69,21 @@ void Book::returnBook() {
     setBorrowerId("");
 }
 
-string Book::toString() const {
+string Book::toString(Library& library) const {
     string result = "Titre: " + title +
                     "\nAuteur: " + author +
                     "\nISBN: " + isbn +
                     "\nDisponible: " + (isAvailable ? "Oui" : "Non");
 
-    if (!isAvailable && !borrowerId.empty()) {
-        result += "\nEmprunté par: " + borrowerId;
+    if (!isAvailable) {
+
+        User* user = library.findUserById(borrowerId);
+
+        if (user != nullptr) {
+            result += "\nEmprunté par: " + user->getName();
+        } else {
+            result += "\nEmprunté par: UTILISATEUR INTROUVABLE";
+        }
     }
 
     return result;
@@ -94,6 +102,11 @@ void Book::fromFileFormat(const string& line){
     getline(book, isbn, '|');
     getline(book, disponible, '|');
     getline(book, borrowerId, '|');
+    getline(book, borrowerId);
+
+if (!borrowerId.empty() && borrowerId.back() == '\r') {
+    borrowerId.pop_back();
+}
 
     isAvailable = (disponible == "1");
 }

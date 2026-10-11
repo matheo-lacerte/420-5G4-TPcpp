@@ -172,7 +172,7 @@ void Library::displayAllBooks() {
     cout << "\n=== TOUS LES LIVRES ===\n";
     for (size_t i = 0; i < sortedBooks.size(); ++i) {
         cout << "\nLivre " << (i + 1) << " :\n";
-        cout << sortedBooks[i]->toString() << "\n";
+        cout << sortedBooks[i]->toString(*this) << "\n";
         cout << "-------------------------\n";
     }
 }
@@ -189,7 +189,7 @@ void Library::displayAvailableBooks() {
     cout << "\n=== LIVRES DISPONIBLES ===\n";
     for (size_t i = 0; i < available.size(); ++i) {
         cout << "\nLivre " << (i + 1) << " :\n";
-        cout << available[i]->toString() << "\n";
+        cout << available[i]->toString(*this) << "\n";
         cout << "---------------------------\n";
     }
 }
