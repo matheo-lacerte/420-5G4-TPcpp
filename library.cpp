@@ -51,6 +51,7 @@ vector<Book*> Library::searchBooksByTitle(const string& title) {
             results.push_back(book.get());
         }
     }
+
     return results;
 }
 
@@ -152,11 +153,26 @@ void Library::displayAllBooks() {
         cout << "Aucun livre dans la bibliothèque.\n";
         return;
     }
+
+    vector<Book*> sortedBooks;
+
+    for (auto &&book : books)
+    {
+        sortedBooks.push_back(book.get());
+    }
+    sort(sortedBooks.begin(), sortedBooks.end(),
+    [](Book* a, Book* b) {
+        if (a->getTitle() == b->getTitle()) {
+            return a->getAuthor() < b->getAuthor();
+        }
+
+        return a->getTitle() < b->getTitle();
+    });
     
     cout << "\n=== TOUS LES LIVRES ===\n";
-    for (size_t i = 0; i < books.size(); ++i) {
+    for (size_t i = 0; i < sortedBooks.size(); ++i) {
         cout << "\nLivre " << (i + 1) << " :\n";
-        cout << books[i]->toString() << "\n";
+        cout << sortedBooks[i]->toString() << "\n";
         cout << "-------------------------\n";
     }
 }
