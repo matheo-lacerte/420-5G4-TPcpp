@@ -14,3 +14,6 @@ $ make
 
 Il contient 2 fichiers `books.txt`et `users.txt` que vous pouvez utilisez pour tester votre code.
 Pour ca il suffit de donner chemin vers le repertoire data avec l'application `bibliotheque -d <chemin verrs data>`
+
+Mathéo Lacerte
+202430191
